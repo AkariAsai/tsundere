@@ -10,47 +10,45 @@ extension UIColor {
 }
 
 class ViewController: UIViewController, UIScrollViewDelegate  {
-    
     typealias UsersInfoOverview = [ Int : (String, Int, Int) ]
     
     var usersByRead : [ (name : String, pageCount : Int) ] = []
     var usersByUnread : [ (name : String, pageCount : Int) ] = []
     
+    var barMargin = 50
+    var barWidth = 50
+    
     var graphBaseHeight:CGFloat = 0.0
     
     var userInfoOverview = UsersInfoOverview()
-    private var graphScroll: UIScrollView!
-    var unreadBars : [ UIView ] = []
-    var readBars : [ UIView ] = []
+    var bars : [ UIView ] = []
+    var labels : [ (name : UILabel, pageCount : UILabel) ] = []
     
     @IBOutlet weak var readSegmentation: UISegmentedControl!
+    @IBOutlet weak var graphScroll: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        graphScroll = UIScrollView()
-        graphScroll.minimumZoomScale = 0.5
-        graphScroll.maximumZoomScale = 5
-        
-        graphScroll.frame = CGRect(x:10, y: 150, width:self.view.frame.maxX, height:self.view.frame.maxY - 200)
-        graphBaseHeight = graphScroll.frame.height - CGFloat(100.0)
-        
-        graphScroll.contentSize = CGSize(width:1000, height:graphScroll.frame.height)
-        graphScroll.delegate = self
-        
-        
-        fetchFirstView( callback: {overview in
+        fetchFirstView(callback: { overview in
             for user in overview {
-                usersByRead.append((user.1.0, user.1.1))
-                usersByUnread.append((user.1.0, user.1.2))
+                self.usersByRead.append((user.1.0, user.1.1))
+                self.usersByUnread.append((user.1.0, user.1.2))
             }
         })
         
         usersByRead.sort() { $0.pageCount > $1.pageCount }
         usersByUnread.sort() { $0.pageCount > $1.pageCount }
         
-        self.view.addSubview(graphScroll)
-        showReadPage()
+        graphScroll.minimumZoomScale = 0.5
+        graphScroll.maximumZoomScale = 5
+        
+        graphScroll.contentSize = CGSize(width: CGFloat(usersByRead.count * (barWidth + barMargin)), height: graphScroll.frame.height)
+        graphScroll.delegate = self
+        graphScroll.showsHorizontalScrollIndicator = false
+        
+        self.showPageBar(index: 0)
+        
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchView(sender:)))  //Swift3
         
         self.view.addGestureRecognizer(pinchGesture)
@@ -64,52 +62,54 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     @IBAction func segementedControllerChanged(_ sender: Any) {
         let selectedIndex = readSegmentation.selectedSegmentIndex
         
-        if selectedIndex == 1{
-            showUnreadPage()
-        } else{
-            showReadPage()
+        showPageBar(index: selectedIndex)
+    }
+    
+    func showPageBar(index : Int){
+        removeAllBars()
+        
+        self.graphScroll.setContentOffset(.zero, animated: false)
+        
+        let users = (index == 0 ? usersByRead : usersByUnread)
+        let maxHeight = Float(self.graphScroll.frame.height)
+        
+        if let maxCount = users.first?.pageCount {
+            for index in 0 ..< users.count {
+                let height = Int(maxHeight * Float(users[index].pageCount) / Float(maxCount) * 0.7)
+                let bar = UIView(frame: CGRect(x: (barWidth + barMargin) * index, y: Int(maxHeight - 70), width: barWidth, height: 0))
+                
+                bar.backgroundColor = UIColor.MainColor()
+                graphScroll.addSubview(bar)
+                bars.append(bar)
+                
+                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { () -> Void in
+                     bar.frame = CGRect(x: (self.barWidth + self.barMargin) * index, y: Int(maxHeight - Float(height) - 70), width: self.barWidth, height: height)
+                }, completion: nil)
+                
+                let nameLabel = UILabel()
+                nameLabel.text = users[index].name
+                nameLabel.sizeToFit()
+                nameLabel.center = CGPoint(x: CGFloat((barWidth + barMargin) * index + barWidth / 2), y: graphScroll.frame.height - 20)
+                graphScroll.addSubview(nameLabel)
+                
+                let pageCountLabel = UILabel()
+                pageCountLabel.text = "\(users[index].pageCount)"
+                pageCountLabel.sizeToFit()
+                pageCountLabel.center = CGPoint(x: CGFloat((barWidth + barMargin) * index + barWidth / 2), y: graphScroll.frame.height - 50)
+                graphScroll.addSubview(pageCountLabel)
+                
+                labels.append((nameLabel, pageCountLabel))
+            }
         }
     }
     
-    func showReadPage(){
-        removeAllBarsFromGraphScroll()
-        
-        let maxPageCount = sortedArray[0].1.1
-        
-        var index = 0
-        for (k, v) in sortedArray{
-            let height = Int(Float(self.graphScroll.frame.height) * Float(v.1)/Float(maxPageCount))
-            let rect = CGRect(x: 80 * index,y: Int(graphBaseHeight) - height, width: 40, height: height)
-            let bar = UIView.init(frame: rect)
-            bar.backgroundColor = UIColor.MainColor()
-            graphScroll.addSubview(bar)
-            readBars.append(bar)
-            index += 1
-        }
-    }
-    
-    func showUnreadPage(){
-        removeAllBarsFromGraphScroll()
-        let sortedArray = Array(userInfoOverview).sorted{$0.1.2 > $1.1.2}
-        let maxPageCount = sortedArray[0].1.2
-        
-        var index = 0
-        for (k, v) in sortedArray{
-            let height = Int(Float(self.graphScroll.frame.height) * Float(v.2)/Float(maxPageCount))
-            let rect = CGRect(x: 80 * index,y: Int(graphBaseHeight) - height, width: 40, height: height)
-            let bar = UIView.init(frame: rect)
-            bar.backgroundColor = UIColor.gray
-            graphScroll.addSubview(bar)
-            unreadBars.append(bar)
-            
-            index += 1
-        }
-    }
-    
-    func removeAllBarsFromGraphScroll(){
-        for view in graphScroll.subviews{
+    func removeAllBars(){
+        for view in graphScroll.subviews {
             view.removeFromSuperview()
         }
+        
+        self.bars = []
+        self.labels = []
     }
     
     func pinchView(sender: UIPinchGestureRecognizer) {
@@ -123,41 +123,30 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     
     func transform(center: CGPoint, scale:Float) -> Void{
         print(center, scale)
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView){
-        //let sortedArray = Array(userInfoOverview).sorted{$0.1.1 > $1.1.1}
-        print(graphScroll.contentOffset.x / 80)
-        if graphScroll.contentOffset.x > 0{
-            fitReadPageMaxHeight(scale:Float(graphScroll.contentOffset.x / 80))        }
-        
-    }
-    
-    func fitReadPageMaxHeight(scale:Float){
-        //removeAllBarsFromGraphScroll()
-        //let sortedArray = Array(userInfoOverview).sorted{$0.1.1 > $1.1.1}
-        //let maxPageCount = sortedArray[Int(scale)].1.1
-        //print(maxPageCount)
-        let selectedIndex = readSegmentation.selectedSegmentIndex
-        let maxHeight = self.graphScroll.frame.height
-        let maxPageCount = (selectedIndex == 0 ? userInfoOverview[Int(scale)]!.1 : userInfoOverview[Int(scale)]!.2)
-        
-        var index = 0
-        let proportion = scale - Float(Int(scale))
-        for (k, v) in userInfoOverview {
-            let height = Float(maxHeight) * Float(v.1) / Float(maxPageCount) * (1 + proportion)
-            
-            if (selectedIndex == 1){
-                unreadBars[index].frame = CGRect(x: 0 ,y: 0, width: 40, height: Int(height))
-            } else {
-                readBars[index].frame = CGRect(x: 0 ,y: 0, width: 40, height: Int(height))
-            }
-                
-            index += 1
+        if graphScroll.contentOffset.x > 0 {
+            fitReadPageMaxHeight(offset: Float(graphScroll.contentOffset.x))
         }
-        
     }
     
+    func fitReadPageMaxHeight(offset: Float) {
+        let users = (readSegmentation.selectedSegmentIndex == 0 ? self.usersByRead : self.usersByUnread)
+        let barSpace = barWidth + barMargin
+        let maxHeight = Float(self.graphScroll.frame.height)
+        let maxPageIndex = min(Int(offset / Float(barSpace)), users.count - 1)
+        let maxPageCount = users[maxPageIndex].pageCount
+        let barOffset = Float(maxPageCount - users[min(maxPageIndex + 1, users.count - 1)].pageCount) / Float(maxPageCount) * maxHeight * Float(Int(offset) % barSpace) / Float(barSpace)
+
+        print(offset, maxPageIndex, maxPageCount, users[min(maxPageIndex + 1, users.count - 1)].pageCount, maxHeight, barOffset)
+        
+        for index in 0 ..< users.count {
+            let height = Int((maxHeight + barOffset) * Float(users[index].pageCount) / Float(maxPageCount) * 0.7)
+            let x = (barWidth + barMargin) * index
+            
+            bars[index].frame = CGRect(x: x, y: Int(maxHeight - Float(height) - 70), width: barWidth, height: height)
+        }
+    }
 }
 
