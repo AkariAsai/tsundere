@@ -19,7 +19,18 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     //This is for profile
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
-
+    
+    @IBAction func readButton(_ sender: Any) {
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.read_flag = 1
+    }
+    
+    @IBAction func unreadButton(_ sender: Any) {
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.read_flag = 0
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //ユーザー個人ネーム読み取るように変更
