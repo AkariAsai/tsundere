@@ -76,7 +76,7 @@ func searchBookAPI(keyword : String, callback : @escaping ([ Book ]) -> Void) {
         json["items"].arrayValue.forEach {
             let title = $0["volumeInfo"]["title"].string!
             let authors = $0["volumeInfo"]["authors"].arrayValue.map { $0.string! }.joined(separator: ",")
-            let isbn = $0["volumeInfo"]["industryIdentifiers"][0]["identifier"].string!
+            let isbn = $0["volumeInfo"]["industryIdentifiers"][0]["identifier"].string ?? ""
             let image = $0["volumeInfo"]["imageLinks"]["smallThumbnail"].string ?? ""
             let pageCount = $0["volumeInfo"]["pageCount"].intValue
             
