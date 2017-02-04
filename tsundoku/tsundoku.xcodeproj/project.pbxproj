@@ -17,6 +17,7 @@
 		451C1E461E4459FD0047C810 /* tsundokuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C1E451E4459FD0047C810 /* tsundokuUITests.swift */; };
 		451C1E541E446FBF0047C810 /* IndivisualPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C1E531E446FBF0047C810 /* IndivisualPageViewController.swift */; };
 		451C1E561E446FD60047C810 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C1E551E446FD60047C810 /* SearchViewController.swift */; };
+		465B599B1E458441000ED509 /* ServerCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465B599A1E458441000ED509 /* ServerCommunication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		451C1E471E4459FD0047C810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		451C1E531E446FBF0047C810 /* IndivisualPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndivisualPageViewController.swift; sourceTree = "<group>"; };
 		451C1E551E446FD60047C810 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		465B599A1E458441000ED509 /* ServerCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				451C1E2E1E4459FD0047C810 /* LaunchScreen.storyboard */,
 				451C1E311E4459FD0047C810 /* Info.plist */,
 				451C1E291E4459FD0047C810 /* tsundoku.xcdatamodeld */,
+				465B599A1E458441000ED509 /* ServerCommunication.swift */,
 			);
 			path = tsundoku;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				451C1E561E446FD60047C810 /* SearchViewController.swift in Sources */,
+				465B599B1E458441000ED509 /* ServerCommunication.swift in Sources */,
 				451C1E2B1E4459FD0047C810 /* tsundoku.xcdatamodeld in Sources */,
 				451C1E541E446FBF0047C810 /* IndivisualPageViewController.swift in Sources */,
 				451C1E251E4459FD0047C810 /* ViewController.swift in Sources */,
