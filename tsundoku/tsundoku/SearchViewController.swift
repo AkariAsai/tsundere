@@ -22,7 +22,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
-        //searchTextField.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
     }
     
     //GoogleBooksAPIから返される情報の数によって要更新
@@ -42,6 +41,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        //TODO: 選ばれた本を積み本に追加する。
         print("セル番号：(indexPath.row) セルの内容：(titles[indexPath.row])")
     }
     
