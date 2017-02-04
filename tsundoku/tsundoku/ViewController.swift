@@ -22,7 +22,7 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     
     var userInfoOverview = UsersInfoOverview()
     var bars : [ UIView ] = []
-    var labels : [ (name : UILabel, pageCount : UILabel) ] = []
+    var labels : [ (name : UIButton, pageCount : UILabel) ] = []
     
     @IBOutlet weak var readSegmentation: UISegmentedControl!
     @IBOutlet weak var graphScroll: UIScrollView!
@@ -86,11 +86,12 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
                      bar.frame = CGRect(x: (self.barWidth + self.barMargin) * index, y: Int(maxHeight - Float(height) - 70), width: self.barWidth, height: height)
                 }, completion: nil)
                 
-                let nameLabel = UILabel()
-                nameLabel.text = users[index].name
-                nameLabel.sizeToFit()
-                nameLabel.center = CGPoint(x: CGFloat((barWidth + barMargin) * index + barWidth / 2), y: graphScroll.frame.height - 20)
-                graphScroll.addSubview(nameLabel)
+                let nameButton = UIButton()
+                nameButton.setTitle(users[index].name, for: .normal)
+                nameButton.sizeToFit()
+                nameButton.frame = CGRect(x: 0, y: 0, width: barWidth + barMargin, height: 15)
+                nameButton.center = CGPoint(x: CGFloat((barWidth + barMargin) * index + barWidth / 2), y: graphScroll.frame.height - 20)
+                graphScroll.addSubview(nameButton)
                 
                 let pageCountLabel = UILabel()
                 pageCountLabel.text = "\(users[index].pageCount)"
@@ -98,7 +99,7 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
                 pageCountLabel.center = CGPoint(x: CGFloat((barWidth + barMargin) * index + barWidth / 2), y: graphScroll.frame.height - 50)
                 graphScroll.addSubview(pageCountLabel)
                 
-                labels.append((nameLabel, pageCountLabel))
+                labels.append((nameButton, pageCountLabel))
             }
         }
     }
