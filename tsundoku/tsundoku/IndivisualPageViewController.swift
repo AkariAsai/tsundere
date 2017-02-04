@@ -12,12 +12,12 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     
     @IBAction func readButton(_ sender: Any) {
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.read_flag = 1
+        appDelegate.read_flag = 0
     }
     
     @IBAction func unreadButton(_ sender: Any) {
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.read_flag = 0
+        appDelegate.read_flag = 1
     }
     
     
