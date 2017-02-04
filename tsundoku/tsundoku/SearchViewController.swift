@@ -11,7 +11,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print(book)
             self.suggestedBooks.append((book.0, book.1))
             }
-            print("hello")
             print(self.suggestedBooks)
             self.suggestTableView.reloadData()
         })
