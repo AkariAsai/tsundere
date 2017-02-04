@@ -19,8 +19,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if FBSDKAccessToken.current() != nil && false {
+
+        if FBSDKAccessToken.current() != nil {
             self.transitToGraphView()
         } else {
             initLoginButton()

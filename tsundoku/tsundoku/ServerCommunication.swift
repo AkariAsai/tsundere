@@ -10,31 +10,31 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-let HOST_ADDRESS = "153.120.170.146"
+let HOST_ADDRESS = "app.ut-hackers.tk"
 
 // - 引数: user id
 // - 返り値: 自分と友人の(username,読了ページ数,積読ページ数)の一覧
 typealias UsersInfoOverview = [ String : (String, Int, Int) ]
 
 func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
-    let overview = [
-        "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
-        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 2000),
-        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 1000),
-        "126" : (username: "Toby Chang", readNum: 1000, unreadNum: 5000),
-        "127" : (username: "HOGE FUGA", readNum: 1000, unreadNum: 2000),
-        "128" : (username: "PIYO PIYO", readNum: 2000, unreadNum: 2000),
-        "129" : (username: "AIUEO KKKKK", readNum: 3000, unreadNum: 1000),
-        "130" : (username: "MacBook Pro", readNum: 1000, unreadNum: 5000),
-        "131" : (username: "MacBook Air", readNum: 1000, unreadNum: 2000),
-        "132" : (username: "Mac Pro", readNum: 2000, unreadNum: 2000),
-        "133" : (username: "MacBook", readNum: 3000, unreadNum: 1000),
-        "134" : (username: "iMac", readNum: 1000, unreadNum: 5000)
-    ]
-    
-    callback(overview)
-    
-    return // DEBUG
+//    let overview = [
+//        "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
+//        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 2000),
+//        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 1000),
+//        "126" : (username: "Toby Chang", readNum: 1000, unreadNum: 5000),
+//        "127" : (username: "HOGE FUGA", readNum: 1000, unreadNum: 2000),
+//        "128" : (username: "PIYO PIYO", readNum: 2000, unreadNum: 2000),
+//        "129" : (username: "AIUEO KKKKK", readNum: 3000, unreadNum: 1000),
+//        "130" : (username: "MacBook Pro", readNum: 1000, unreadNum: 5000),
+//        "131" : (username: "MacBook Air", readNum: 1000, unreadNum: 2000),
+//        "132" : (username: "Mac Pro", readNum: 2000, unreadNum: 2000),
+//        "133" : (username: "MacBook", readNum: 3000, unreadNum: 1000),
+//        "134" : (username: "iMac", readNum: 1000, unreadNum: 5000)
+//    ]
+//    
+//    callback(overview)
+//    
+//    return // DEBUG
     
     let id = UserDefaults.standard.string(forKey: "id")
     
@@ -68,4 +68,29 @@ func pushUserData(id : String, name : String, friends : [[ String : String ]], c
     }
 }
 
+// (タイトル, 著者名, ISBN、商品画像、ページ数)
+typealias Book = (String, String, String, String, Int)
 
+func searchBookAPI(keyword : String, callback : @escaping ([ Book ]) -> Void) {
+    let data : [ String : AnyObject ] = [ "q" : keyword as AnyObject ]
+    
+    Alamofire.request("https://www.googleapis.com/books/v1/volumes", parameters: data).responseJSON { response in
+        print("searchBookAPI: Status Code: \(response.result.isSuccess)")
+        
+        guard let object = response.result.value else { return }
+        let json = JSON(object)
+        var books : [Book] = []
+
+        json["items"].arrayValue.forEach {
+            let title = $0["volumeInfo"]["title"].string!
+            let authors = $0["volumeInfo"]["authors"].arrayValue.map { $0.string! }.joined(separator: ",")
+            let isbn = $0["volumeInfo"]["industryIdentifiers"][0]["identifier"].string!
+            let image = $0["volumeInfo"]["imageLinks"]["smallThumbnail"].string ?? ""
+            let pageCount = $0["volumeInfo"]["pageCount"].intValue
+            
+            books.append((title, authors, isbn, image, pageCount))
+        }
+        
+        callback(books)
+    }
+}
