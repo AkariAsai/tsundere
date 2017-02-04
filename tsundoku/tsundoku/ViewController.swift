@@ -121,11 +121,11 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
         transform(center: anchor, scale: Float(sender.scale))
     }
     
-    func transform(center: CGPoint, scale:Float) -> Void{
+    func transform(center: CGPoint, scale:Float) -> Void {
         print(center, scale)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView){
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if graphScroll.contentOffset.x > 0 {
             fitReadPageMaxHeight(offset: Float(graphScroll.contentOffset.x))
         }
@@ -133,16 +133,19 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     
     func fitReadPageMaxHeight(offset: Float) {
         let users = (readSegmentation.selectedSegmentIndex == 0 ? self.usersByRead : self.usersByUnread)
+        
         let barSpace = barWidth + barMargin
         let maxHeight = Float(self.graphScroll.frame.height)
+        
         let maxPageIndex = min(Int(offset / Float(barSpace)), users.count - 1)
         let maxPageCount = users[maxPageIndex].pageCount
-        let barOffset = Float(maxPageCount - users[min(maxPageIndex + 1, users.count - 1)].pageCount) / Float(maxPageCount) * maxHeight * Float(Int(offset) % barSpace) / Float(barSpace)
+        
+        let pageOffset = Float(maxPageCount - users[min(maxPageIndex + 1, users.count - 1)].pageCount) / Float(users[min(maxPageIndex + 1, users.count - 1)].pageCount) * Float(Int(offset) % barSpace) / Float(barSpace)
 
-        print(offset, maxPageIndex, maxPageCount, users[min(maxPageIndex + 1, users.count - 1)].pageCount, maxHeight, barOffset)
+        print(offset, maxPageIndex, maxPageCount, users[min(maxPageIndex + 1, users.count - 1)].pageCount, maxHeight, pageOffset)
         
         for index in 0 ..< users.count {
-            let height = Int((maxHeight + barOffset) * Float(users[index].pageCount) / Float(maxPageCount) * 0.7)
+            let height = Int(maxHeight * Float(users[index].pageCount) / Float(maxPageCount) * (1 + pageOffset) * 0.7)
             let x = (barWidth + barMargin) * index
             
             bars[index].frame = CGRect(x: x, y: Int(maxHeight - Float(height) - 70), width: barWidth, height: height)
