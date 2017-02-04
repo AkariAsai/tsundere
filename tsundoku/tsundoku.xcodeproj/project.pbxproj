@@ -18,6 +18,8 @@
 		451C1E541E446FBF0047C810 /* IndivisualPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C1E531E446FBF0047C810 /* IndivisualPageViewController.swift */; };
 		451C1E561E446FD60047C810 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C1E551E446FD60047C810 /* SearchViewController.swift */; };
 		465B599B1E458441000ED509 /* ServerCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465B599A1E458441000ED509 /* ServerCommunication.swift */; };
+		467AEB8B1E45DA2C0066FD3A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467AEB8A1E45DA2C0066FD3A /* LoginViewController.swift */; };
+		5FD58E02F9C3CD71356FBDDC /* Pods_tsundoku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1015A3724145F0C2A591D3C4 /* Pods_tsundoku.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1015A3724145F0C2A591D3C4 /* Pods_tsundoku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tsundoku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C1E1F1E4459FD0047C810 /* tsundoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tsundoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C1E221E4459FD0047C810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451C1E241E4459FD0047C810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +58,9 @@
 		451C1E531E446FBF0047C810 /* IndivisualPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndivisualPageViewController.swift; sourceTree = "<group>"; };
 		451C1E551E446FD60047C810 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		465B599A1E458441000ED509 /* ServerCommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCommunication.swift; sourceTree = "<group>"; };
+		467AEB8A1E45DA2C0066FD3A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7955482FAF28D5673A70AEF4 /* Pods-tsundoku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tsundoku.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tsundoku/Pods-tsundoku.debug.xcconfig"; sourceTree = "<group>"; };
+		AF315FEEF84094497A320685 /* Pods-tsundoku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tsundoku.release.xcconfig"; path = "Pods/Target Support Files/Pods-tsundoku/Pods-tsundoku.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD58E02F9C3CD71356FBDDC /* Pods_tsundoku.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +96,8 @@
 				451C1E391E4459FD0047C810 /* tsundokuTests */,
 				451C1E441E4459FD0047C810 /* tsundokuUITests */,
 				451C1E201E4459FD0047C810 /* Products */,
+				6A4629D0CF42A417309110FE /* Pods */,
+				CBFD50C5A073ED5F6CBB90FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +124,7 @@
 				451C1E311E4459FD0047C810 /* Info.plist */,
 				451C1E291E4459FD0047C810 /* tsundoku.xcdatamodeld */,
 				465B599A1E458441000ED509 /* ServerCommunication.swift */,
+				467AEB8A1E45DA2C0066FD3A /* LoginViewController.swift */,
 			);
 			path = tsundoku;
 			sourceTree = "<group>";
@@ -137,6 +147,23 @@
 			path = tsundokuUITests;
 			sourceTree = "<group>";
 		};
+		6A4629D0CF42A417309110FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7955482FAF28D5673A70AEF4 /* Pods-tsundoku.debug.xcconfig */,
+				AF315FEEF84094497A320685 /* Pods-tsundoku.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CBFD50C5A073ED5F6CBB90FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1015A3724145F0C2A591D3C4 /* Pods_tsundoku.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 451C1E4A1E4459FD0047C810 /* Build configuration list for PBXNativeTarget "tsundoku" */;
 			buildPhases = (
+				1033AF5D56414B5B0965866C /* [CP] Check Pods Manifest.lock */,
 				451C1E1B1E4459FD0047C810 /* Sources */,
 				451C1E1C1E4459FD0047C810 /* Frameworks */,
 				451C1E1D1E4459FD0047C810 /* Resources */,
+				607A6F2BE57C173F9E2D9B4F /* [CP] Embed Pods Frameworks */,
+				64951BC45BCD12A4EF92F6CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,11 +230,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "浅井紀子";
 				TargetAttributes = {
 					451C1E1E1E4459FD0047C810 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 8V93M8FSEZ;
 						ProvisioningStyle = Automatic;
 					};
 					451C1E351E4459FD0047C810 = {
@@ -266,11 +297,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1033AF5D56414B5B0965866C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		607A6F2BE57C173F9E2D9B4F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tsundoku/Pods-tsundoku-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64951BC45BCD12A4EF92F6CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tsundoku/Pods-tsundoku-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		451C1E1B1E4459FD0047C810 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467AEB8B1E45DA2C0066FD3A /* LoginViewController.swift in Sources */,
 				451C1E561E446FD60047C810 /* SearchViewController.swift in Sources */,
 				465B599B1E458441000ED509 /* ServerCommunication.swift in Sources */,
 				451C1E2B1E4459FD0047C810 /* tsundoku.xcdatamodeld in Sources */,
@@ -349,6 +429,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -399,6 +480,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -426,8 +508,10 @@
 		};
 		451C1E4B1E4459FD0047C810 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7955482FAF28D5673A70AEF4 /* Pods-tsundoku.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8V93M8FSEZ;
 				INFOPLIST_FILE = tsundoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = akariasai.tsundoku;
@@ -438,8 +522,10 @@
 		};
 		451C1E4C1E4459FD0047C810 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF315FEEF84094497A320685 /* Pods-tsundoku.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8V93M8FSEZ;
 				INFOPLIST_FILE = tsundoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = akariasai.tsundoku;
