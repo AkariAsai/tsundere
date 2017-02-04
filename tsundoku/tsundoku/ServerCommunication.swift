@@ -28,9 +28,9 @@ func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
     
     return // DEBUG
     
-    let id = UserDefaults.standard.string(forKey: "id")
+    let id = UserDefaults.standard.string(forKey: "id")!
     
-    Alamofire.request("https://\(HOST_ADDRESS)/\(id)/page_number", method: .post, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
+    Alamofire.request("https://\(HOST_ADDRESS)/user/\(id)/page_number").responseJSON { response in
         print("fetchFirstView: Status Code: \(response.result.isSuccess)")
         
         guard let object = response.result.value else { return }
