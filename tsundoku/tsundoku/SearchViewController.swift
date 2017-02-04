@@ -54,9 +54,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         print("セル番号：(indexPath.row) セルの内容：(titles[indexPath.row])")
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
