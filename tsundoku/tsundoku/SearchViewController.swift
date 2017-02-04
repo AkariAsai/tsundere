@@ -42,8 +42,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return suggestionCell
     }
     
-    private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-        let id = UserDefaults.standard.object(forKey: "id");
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = UserDefaults.standard.object(forKey: "id")!;
         let book = suggestedBooks[indexPath.row];
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate;
         
@@ -55,7 +55,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("セル番号：(indexPath.row) セルの内容：(titles[indexPath.row])")
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
