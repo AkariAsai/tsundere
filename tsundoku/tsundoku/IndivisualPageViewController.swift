@@ -104,8 +104,10 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
         let imageViews = (collectionView == self.readCollectionView ? self.imageViewsOfReadBooks : self.imageViewsOfUnreadBooks)
         
         let label = UILabel()
-        
+
+        label.adjustsFontSizeToFitWidth = false
         label.text = book.title
+        label.sizeToFit()
         label.frame = CGRect(x: 5, y: 115, width: 85, height: 10)
         label.numberOfLines = 0
         
