@@ -31,7 +31,7 @@
         <!--積ん読グラフ-->
         <scene sceneID="62d-Ab-THG">
             <objects>
-                <viewController title="積ん読グラフ" id="wO0-9u-WRm" customClass="ViewController" customModule="tsundoku" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GraphView" title="積ん読グラフ" id="wO0-9u-WRm" customClass="ViewController" customModule="tsundoku" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TBW-Dx-PI2"/>
                         <viewControllerLayoutGuide type="bottom" id="7jE-e2-ONT"/>
@@ -127,7 +127,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読: 1919810ページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GzU-fx-maT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読: **** ページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GzU-fx-maT">
                                 <rect key="frame" x="158" y="123" width="201" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -228,7 +228,7 @@
                                 <color key="textColor" red="0.30980392159999998" green="0.74117647060000003" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="読了: 114545ページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcf-eW-Gbs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="読了: **** ページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcf-eW-Gbs">
                                 <rect key="frame" x="158" y="93" width="201" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -271,7 +271,9 @@
                         <outlet property="profileImage" destination="1Cq-Gg-ste" id="cHd-kj-Qce"/>
                         <outlet property="profileNameLabel" destination="rDR-mW-qp5" id="UJe-94-wSS"/>
                         <outlet property="readCollectionView" destination="dKY-I3-cPo" id="aZk-02-BHF"/>
+                        <outlet property="readLabel" destination="jcf-eW-Gbs" id="c4b-Hz-hI9"/>
                         <outlet property="unreadCollectionView" destination="Ezo-Hx-5Fn" id="Mc0-vQ-AOj"/>
+                        <outlet property="unreadLabel" destination="GzU-fx-maT" id="zwg-uM-aVX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

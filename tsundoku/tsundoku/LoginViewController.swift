@@ -112,7 +112,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func transitToGraphView() {
-        self.present(ViewController(), animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "GraphView")
+        show(vc, sender: nil)
     }
 }
 

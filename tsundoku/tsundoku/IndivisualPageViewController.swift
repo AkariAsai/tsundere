@@ -13,6 +13,8 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var profileNameLabel: UILabel!
     
     @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var readLabel: UILabel!
+    @IBOutlet weak var unreadLabel: UILabel!
     
     var readBooks : [Book] = []
     var unreadBooks : [Book] = []
@@ -31,7 +33,9 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     }
     
     @IBAction func backButtonPushed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "GraphView")
+        show(vc, sender: nil)
     }
     
     override func viewDidLoad() {
@@ -57,7 +61,12 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
             self.readBooks = readBooks
             self.unreadBooks = unreadBooks
             
+            var readPageCount = 0
+            var unreadPageCount = 0
+            
             for book in readBooks {
+                readPageCount += book.pageCount
+                
                 let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 85, height: 100))
                 
                 if book.image.hasPrefix("http") && !book.image.hasPrefix("https") {
@@ -76,6 +85,8 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
             }
             
             for book in unreadBooks {
+                unreadPageCount += book.pageCount
+                
                 let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 85, height: 100))
                 
                 if book.image.hasPrefix("http") && !book.image.hasPrefix("https") {
@@ -92,7 +103,10 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
                 
                 self.imageViewsOfUnreadBooks.append(imageView)
             }
-
+            
+            self.readLabel.text = "読了: \(readPageCount)ページ"
+            self.unreadLabel.text = "未読: \(unreadPageCount)ページ"
+            
             self.loadingLabel.text = ""
             self.readCollectionView.reloadData()
             self.unreadCollectionView.reloadData()

@@ -5,6 +5,8 @@ use_frameworks!
 target 'tsundoku' do
   pod 'Alamofire', '~> 4.3'
   pod 'SwiftyJSON'
+  pod 'Dollar'
+  pod 'Cent'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
