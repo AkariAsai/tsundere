@@ -14,6 +14,7 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     
     var usersByRead : [ (name : String, pageCount : Int) ] = []
     var usersByUnread : [ (name : String, pageCount : Int) ] = []
+    var userIDDic =  [String:Int]()
     
     var barMargin = 50
     var barWidth = 50
@@ -21,6 +22,10 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     var graphBaseHeight:CGFloat = 0.0
     
     var userInfoOverview = UsersInfoOverview()
+    
+    var userName:String = ""
+    var userID: Int = 0
+    
     var bars : [ UIView ] = []
     var labels : [ (name : UIButton, pageCount : UILabel) ] = []
     
@@ -32,6 +37,7 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
         
         fetchFirstView(callback: { overview in
             for user in overview {
+                self.userIDDic[user.1.0] = Int(user.0)
                 self.usersByRead.append((user.1.0, user.1.1))
                 self.usersByUnread.append((user.1.0, user.1.2))
             }
@@ -89,8 +95,14 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
                 let nameButton = UIButton()
                 nameButton.setTitle(users[index].name, for: .normal)
                 nameButton.sizeToFit()
-                nameButton.frame = CGRect(x: 0, y: 0, width: barWidth + barMargin, height: 15)
+                nameButton.frame = CGRect(x: 0, y: Int(bar.frame.maxY + 50) , width: barWidth + barMargin, height: 15)
+                nameButton.backgroundColor = UIColor.clear
+                nameButton.setTitleColor(UIColor.MainColor(), for: .normal)
                 nameButton.center = CGPoint(x: CGFloat((barWidth + barMargin) * index + barWidth / 2), y: graphScroll.frame.height - 20)
+                nameButton.addTarget(self, action: #selector(didTapNameButton(sender:)), for: .touchUpInside)
+                
+                nameButton.tag = userIDDic[users[index].name]!
+                
                 graphScroll.addSubview(nameButton)
                 
                 let pageCountLabel = UILabel()
@@ -114,7 +126,6 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
     }
     
     func pinchView(sender: UIPinchGestureRecognizer) {
-        print("hello")
         print("scale: \(sender.scale)")
         print("velocity: \(sender.velocity)")
         
@@ -151,6 +162,21 @@ class ViewController: UIViewController, UIScrollViewDelegate  {
             
             bars[index].frame = CGRect(x: x, y: Int(maxHeight - Float(height) - 70), width: barWidth, height: height)
         }
+        
     }
+    
+    func didTapNameButton(sender:AnyObject){
+        userName = sender.currentTitle as String!
+        userID = sender.tag
+        performSegue(withIdentifier: "goIndividualView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            let secondViewController = segue.destination as! IndividualPageViewController
+        secondViewController.userName = userName
+        secondViewController.userID = userID
+
+    }
+    
 }
 

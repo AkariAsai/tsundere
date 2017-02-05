@@ -3,10 +3,13 @@ import UIKit
 
 class IndividualPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
+    var userName:String = ""
+    var userID: Int = 0
+    
     //UICollectionViews for read/unread books.
     @IBOutlet weak var unreadCollectionView: UICollectionView!
     @IBOutlet weak var readCollectionView: UICollectionView!
-
+    
     //This is for profile
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
@@ -25,7 +28,7 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         //ユーザー個人ネーム読み取るように変更
-        profileNameLabel.text = "山田太郎"
+        profileNameLabel.text = userName
         //プロフィール画も同様
         profileImage.image = UIImage(named:"iconset")
         profileImage.layer.borderColor = UIColor.MainColor().cgColor
@@ -48,7 +51,7 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
         } else {
             return 10
         }
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
