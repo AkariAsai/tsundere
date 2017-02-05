@@ -46,15 +46,32 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let id = UserDefaults.standard.object(forKey: "id")!;
         let book = suggestedBooks[indexPath.row];
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate;
+        let alertButton = UIAlertController(title: book.title + "を追加しますか？", message: "", preferredStyle: .alert)
         
-        let data : [String: Any] = ["title":book.title, "author":book.author, "ISBN":book.ISBN, "page_number":book.page_number, "image_url":book.image_url, "read_flag":appDelegate.read_flag];
+        let defaultAction = UIAlertAction(title:"OK", style: .default, handler: {
+            (action:UIAlertAction!) -> Void in
+            let data : [String: Any] = ["title":book.title, "author":book.author, "ISBN":book.ISBN, "page_number":book.page_number, "image_url":book.image_url, "read_flag":appDelegate.read_flag];
+            
+            Alamofire.request("https://app.ut-hackers.tk/user/\(id)/book/add", method: .post, parameters: data).responseJSON { response in
+                print("searchBookAPI: Status Code: \(response.result.isSuccess)")
+            }
+            
+            let storyboard: UIStoryboard = self.storyboard!
+            let nextView = storyboard.instantiateViewController(withIdentifier: "indivisual") as! IndividualPageViewController
+            self.present(nextView, animated: true, completion: nil)
+            print("セル番号：(indexPath.row) セルの内容：(titles[indexPath.row])")
+        })
         
-        Alamofire.request("https://app.ut-hackers.tk/user/\(id)/book/add", method: .post, parameters: data).responseJSON { response in
-            print("searchBookAPI: Status Code: \(response.result.isSuccess)")
-        }
-        print("セル番号：(indexPath.row) セルの内容：(titles[indexPath.row])")
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (action) -> Void in
+            print("Cancel")
+        })
+        
+        alertButton.addAction(defaultAction)
+        alertButton.addAction(cancelAction)
+        self.present(alertButton, animated: true, completion: nil);
     }
-        
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
