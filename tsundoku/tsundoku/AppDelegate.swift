@@ -6,6 +6,7 @@ import FBSDKCoreKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var username = "", userid = ""
     var read_flag: Int = 0
     var window: UIWindow?
     

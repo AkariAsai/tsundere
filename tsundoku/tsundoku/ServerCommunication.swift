@@ -9,24 +9,24 @@ let HOST_ADDRESS = "app.ut-hackers.tk"
 typealias UsersInfoOverview = [ String : (String, Int, Int) ]
 
 func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
-    let overview = [
+    var overview = [
         "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
-        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 2000),
-        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 1000),
-        "126" : (username: "Toby Chang", readNum: 4000, unreadNum: 5000),
-        "127" : (username: "HOGE FUGA", readNum: 5000, unreadNum: 2000),
-        "128" : (username: "PIYO PIYO", readNum: 5000, unreadNum: 2000),
-        "129" : (username: "AIUEO KKKKK", readNum: 5000, unreadNum: 1000),
-        "130" : (username: "MacBook Pro", readNum: 6000, unreadNum: 5000),
-        "131" : (username: "MacBook Air", readNum: 7000, unreadNum: 2000),
-        "132" : (username: "Mac Pro", readNum: 8000, unreadNum: 2000),
-        "133" : (username: "MacBook", readNum: 8000, unreadNum: 1000),
-        "134" : (username: "iMac", readNum: 9000, unreadNum: 5000)
+        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 3000),
+        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 4000),
+        "126" : (username: "Toby Chang", readNum: 4000, unreadNum: 4000),
+        "127" : (username: "HOGE FUGA", readNum: 5000, unreadNum: 5500),
+        "128" : (username: "PIYO PIYO", readNum: 5000, unreadNum: 5600),
+        "129" : (username: "AIUEO KKKKK", readNum: 5000, unreadNum: 57000),
+        "130" : (username: "JohnH", readNum: 6000, unreadNum: 5800),
+        "131" : (username: "E太郎", readNum: 7000, unreadNum: 7000),
+        "132" : (username: "辛太郎", readNum: 8000, unreadNum: 7100),
+        "133" : (username: "生太郎", readNum: 8000, unreadNum: 11000),
+        "134" : (username: "人太郎", readNum: 9000, unreadNum: 1100)
     ]
     
-    callback(overview)
-    
-    return // DEBUG
+//    callback(overview)
+//    
+//    return // DEBUG
     
     let id = UserDefaults.standard.string(forKey: "id")!
     
@@ -36,7 +36,7 @@ func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
         guard let object = response.result.value else { return }
         let json = JSON(object)
         
-        var overview : [ String: (String, Int, Int) ] = [ : ]
+//        var overview : [ String: (String, Int, Int) ] = [ : ]
         let user_id = json["user"]["user_id"].string!
         let user_name = json["user"]["user_name"].string!
         let read_pages = json["user"]["page_number"]["read_pages"].intValue
@@ -85,11 +85,13 @@ func fetchBookList(callback: @escaping ([ Book ], [ Book ]) -> Void) {
     }
 }
 
-func pushUserData(id : String, name : String, friends : [[ String : String ]], callback : (Void) -> Void) {
+func pushUserData(id : String, name : String, friends : [[ String : String ]], callback : @escaping (Void) -> Void) {
     let data : [String : Any] = [ "id" : id, "name" : name, "friends" : friends ]
     
     Alamofire.request("https://\(HOST_ADDRESS)/user/login", method: .post, parameters: data, encoding: JSONEncoding.default).responseJSON { response in
         print("pushUserData: Status Code: \(response.result.isSuccess)")
+        
+        callback()
     }
 }
 

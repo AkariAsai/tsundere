@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wO0-9u-WRm">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wO0-9u-WRm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,16 +21,6 @@
                     <view key="view" contentMode="scaleToFill" id="Gsc-sf-8sA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yS2-1K-gR5">
-                                <rect key="frame" x="154" y="381" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="wO0-9u-WRm" kind="show" id="DM6-hd-t1u"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.73725490199999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
@@ -53,20 +43,19 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDY-z2-ttB">
                                 <rect key="frame" x="16" y="28" width="343" height="619"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-fa-ISi">
-                                <rect key="frame" x="0.0" y="82" width="132" height="10"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-fa-ISi" userLabel="\">
+                                <rect key="frame" x="0.0" y="72" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="push me"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="goIndividualView" id="hPI-99-oSH"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ldW-dH-jW7">
-                                <rect key="frame" x="238" y="82" width="121" height="29"/>
+                                <rect key="frame" x="257" y="57" width="83" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="読了"/>
+                                    <segment title="未読"/>
                                 </segments>
                                 <connections>
                                     <action selector="segementedControllerChanged:" destination="wO0-9u-WRm" eventType="valueChanged" id="Qwa-hI-aO1"/>
@@ -138,7 +127,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読: 114545ページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GzU-fx-maT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読: 1919810ページ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GzU-fx-maT">
                                 <rect key="frame" x="158" y="123" width="201" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -172,7 +161,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReadBookCell" id="YVG-pK-hlT">
-                                        <rect key="frame" x="0.0" y="16.5" width="117" height="164"/>
+                                        <rect key="frame" x="0.0" y="17" width="117" height="164"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="117" height="164"/>
@@ -215,8 +204,8 @@
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="山田太郎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDR-mW-qp5">
-                                <rect key="frame" x="158" y="52" width="201" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山田太郎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDR-mW-qp5">
+                                <rect key="frame" x="158" y="63.5" width="201" height="21.5"/>
                                 <color key="backgroundColor" red="0.99991102183393765" green="0.98709156604048931" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -245,6 +234,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3Y-30-K46">
+                                <rect key="frame" x="325" y="35" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BGo-WG-BKs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXF-d4-96G">
+                                <rect key="frame" x="81.5" y="303.5" width="212.5" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.0" green="0.73725490199999999" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -254,14 +257,17 @@
                             <constraint firstItem="GzU-fx-maT" firstAttribute="leading" secondItem="1Cq-Gg-ste" secondAttribute="trailing" constant="13" id="F60-60-kbo"/>
                             <constraint firstItem="1Cq-Gg-ste" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="19" id="LAP-EZ-xKp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rDR-mW-qp5" secondAttribute="trailing" id="OCn-wR-e1T"/>
+                            <constraint firstItem="EXF-d4-96G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R1P-bP-g5J"/>
                             <constraint firstItem="1Cq-Gg-ste" firstAttribute="bottom" secondItem="GzU-fx-maT" secondAttribute="bottom" id="R4R-TB-k9U"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GzU-fx-maT" secondAttribute="trailing" id="TS3-It-GVc"/>
                             <constraint firstItem="rDR-mW-qp5" firstAttribute="leading" secondItem="1Cq-Gg-ste" secondAttribute="trailing" constant="13" id="hOz-hy-UWj"/>
                             <constraint firstItem="1Cq-Gg-ste" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="meg-DJ-Osf"/>
                             <constraint firstItem="jcf-eW-Gbs" firstAttribute="top" secondItem="rDR-mW-qp5" secondAttribute="bottom" constant="8" id="uXH-xl-xG0"/>
+                            <constraint firstItem="EXF-d4-96G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vWw-sg-GS8"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingLabel" destination="EXF-d4-96G" id="nwd-5v-Eys"/>
                         <outlet property="profileImage" destination="1Cq-Gg-ste" id="cHd-kj-Qce"/>
                         <outlet property="profileNameLabel" destination="rDR-mW-qp5" id="UJe-94-wSS"/>
                         <outlet property="readCollectionView" destination="dKY-I3-cPo" id="aZk-02-BHF"/>

@@ -2,8 +2,8 @@ import UIKit
 
 class IndividualPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
-    var userName:String = ""
-    var userID: Int = 0
+    var userName : String = ""
+    var userID : String = ""
     
     //UICollectionViews for read/unread books.
     @IBOutlet weak var unreadCollectionView: UICollectionView!
@@ -11,6 +11,8 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
+    
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var readBooks : [Book] = []
     var unreadBooks : [Book] = []
@@ -28,13 +30,17 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
         appDelegate.read_flag = 1
     }
     
+    @IBAction func backButtonPushed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profileNameLabel.text = (UserDefaults.standard.object(forKey: "name") as! String).components(separatedBy: " ").first! // id
+        profileNameLabel.text = userName.components(separatedBy: " ").first!
 
         profileImage.image = UIImage(named: "iconset")
-        profileImage.layer.borderColor = UIColor.MainColor().cgColor
+        profileImage.layer.borderColor = UIColor.MainColor(index: 0).cgColor
         profileImage.layer.borderWidth = 2.0
         profileImage.layer.cornerRadius = 20.0
         profileImage.layer.masksToBounds = true
@@ -87,11 +93,9 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
                 self.imageViewsOfUnreadBooks.append(imageView)
             }
 
-            
+            self.loadingLabel.text = ""
             self.readCollectionView.reloadData()
             self.unreadCollectionView.reloadData()
-            
-            
         })
     }
     
