@@ -52,6 +52,39 @@ func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
     }
 }
 
+func fetchBookList(callback: @escaping ([ Book ], [ Book ]) -> Void) {
+    let id = UserDefaults.standard.string(forKey: "id")!
+    Alamofire.request("https://\(HOST_ADDRESS)/user/\(id)/list").responseJSON { response in
+        print("fetchBookList: Status Code: \(response.result.isSuccess)")
+        guard let object = response.result.value else { return }
+        let json = JSON(object)
+        var read_books : [Book] = []
+        var unread_books : [Book] = []
+        
+        json["read_books"].arrayValue.forEach {
+            let title = $0["book"]["title"].string!
+            let author = $0["book"]["author"].string!
+            let isbn = $0["book"]["ISBN"].string!
+            let page_number = $0["book"]["page_number"].intValue
+            let image_url = $0["book"]["image_url"].string!
+            
+            read_books.append((title, author, isbn, image_url, page_number))
+        }
+        
+        json["unread_books"].arrayValue.forEach {
+            let title = $0["book"]["title"].string!
+            let author = $0["book"]["author"].string!
+            let isbn = $0["book"]["ISBN"].string!
+            let page_number = $0["book"]["page_number"].intValue
+            let image_url = $0["book"]["image_url"].string!
+            
+            unread_books.append((title, author, isbn, image_url, page_number))
+        }
+        
+        callback(read_books, unread_books)
+    }
+}
+
 func pushUserData(id : String, name : String, friends : [[ String : String ]], callback : (Void) -> Void) {
     let data : [String : Any] = [ "id" : id, "name" : name, "friends" : friends ]
     
