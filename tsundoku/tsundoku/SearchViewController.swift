@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = UserDefaults.standard.object(forKey: "id")!;
+        let id = UserDefaults.standard.object(forKey: "id")!
         let book = suggestedBooks[indexPath.row];
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate;
         

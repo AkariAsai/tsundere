@@ -3,13 +3,14 @@ import UIKit
 
 class IndividualPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
-    //UICollectionViews for read/unread books.
     @IBOutlet weak var unreadCollectionView: UICollectionView!
     @IBOutlet weak var readCollectionView: UICollectionView!
 
-    //This is for profile
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
+    
+    var readBooks : [Book] = []
+    var unreadBooks : [Book] = []
     
     @IBAction func readButton(_ sender: Any) {
         let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -21,15 +22,14 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
         appDelegate.read_flag = 1
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ユーザー個人ネーム読み取るように変更
-        profileNameLabel.text = "山田太郎"
-        //プロフィール画も同様
-        profileImage.image = UIImage(named:"iconset")
+
+        profileNameLabel.text = (UserDefaults.standard.object(forKey: "name") as! String)
+
+        profileImage.image = UIImage(named: "iconset")
         profileImage.layer.borderColor = UIColor.MainColor().cgColor
-        profileImage.layer.borderWidth = 5.0
+        profileImage.layer.borderWidth = 1.0
         profileImage.layer.cornerRadius = 20.0
         profileImage.layer.masksToBounds = true
         
@@ -43,7 +43,7 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         //個人データから読み込み
-        if collectionView == self.unreadCollectionView{
+        if collectionView == self.unreadCollectionView {
             return 100
         } else {
             return 10
