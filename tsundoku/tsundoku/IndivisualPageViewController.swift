@@ -28,7 +28,7 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profileNameLabel.text = (UserDefaults.standard.object(forKey: "name") as! String) // id
+        profileNameLabel.text = (UserDefaults.standard.object(forKey: "name") as! String).components(separatedBy: " ").first! // id
 
         profileImage.image = UIImage(named: "iconset")
         profileImage.layer.borderColor = UIColor.MainColor().cgColor
@@ -87,6 +87,8 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
             
             self.readCollectionView.reloadData()
             self.unreadCollectionView.reloadData()
+            
+            
         })
     }
     
