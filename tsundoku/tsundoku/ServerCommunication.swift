@@ -1,11 +1,3 @@
-//
-//  ServerCommunication.swift
-//  tsundoku
-//
-//  Created by Hiroaki KARASAWA on 2017/02/04.
-//  Copyright © 2017年 浅井紀子. All rights reserved.
-//
-
 import Foundation
 import Alamofire
 import SwiftyJSON
@@ -17,28 +9,28 @@ let HOST_ADDRESS = "app.ut-hackers.tk"
 typealias UsersInfoOverview = [ String : (String, Int, Int) ]
 
 func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
-//    let overview = [
-//        "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
-//        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 2000),
-//        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 1000),
-//        "126" : (username: "Toby Chang", readNum: 1000, unreadNum: 5000),
-//        "127" : (username: "HOGE FUGA", readNum: 1000, unreadNum: 2000),
-//        "128" : (username: "PIYO PIYO", readNum: 2000, unreadNum: 2000),
-//        "129" : (username: "AIUEO KKKKK", readNum: 3000, unreadNum: 1000),
-//        "130" : (username: "MacBook Pro", readNum: 1000, unreadNum: 5000),
-//        "131" : (username: "MacBook Air", readNum: 1000, unreadNum: 2000),
-//        "132" : (username: "Mac Pro", readNum: 2000, unreadNum: 2000),
-//        "133" : (username: "MacBook", readNum: 3000, unreadNum: 1000),
-//        "134" : (username: "iMac", readNum: 1000, unreadNum: 5000)
-//    ]
-//    
-//    callback(overview)
-//    
-//    return // DEBUG
+    let overview = [
+        "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
+        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 2000),
+        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 1000),
+        "126" : (username: "Toby Chang", readNum: 4000, unreadNum: 5000),
+        "127" : (username: "HOGE FUGA", readNum: 5000, unreadNum: 2000),
+        "128" : (username: "PIYO PIYO", readNum: 5000, unreadNum: 2000),
+        "129" : (username: "AIUEO KKKKK", readNum: 5000, unreadNum: 1000),
+        "130" : (username: "MacBook Pro", readNum: 6000, unreadNum: 5000),
+        "131" : (username: "MacBook Air", readNum: 7000, unreadNum: 2000),
+        "132" : (username: "Mac Pro", readNum: 8000, unreadNum: 2000),
+        "133" : (username: "MacBook", readNum: 8000, unreadNum: 1000),
+        "134" : (username: "iMac", readNum: 9000, unreadNum: 5000)
+    ]
     
-    let id = UserDefaults.standard.string(forKey: "id")
+    callback(overview)
     
-    Alamofire.request("https://\(HOST_ADDRESS)/\(id)/page_number", method: .post, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
+    return // DEBUG
+    
+    let id = UserDefaults.standard.string(forKey: "id")!
+    
+    Alamofire.request("https://\(HOST_ADDRESS)/user/\(id)/page_number").responseJSON { response in
         print("fetchFirstView: Status Code: \(response.result.isSuccess)")
         
         guard let object = response.result.value else { return }

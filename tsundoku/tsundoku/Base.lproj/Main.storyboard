@@ -49,18 +49,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDY-z2-ttB">
+                                <rect key="frame" x="16" y="28" width="343" height="619"/>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-fa-ISi">
-                                <rect key="frame" x="116" y="202" width="132" height="10"/>
+                                <rect key="frame" x="0.0" y="82" width="132" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="push me"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="hPI-99-oSH"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ldW-dH-jW7">
+                                <rect key="frame" x="238" y="82" width="121" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segementedControllerChanged:" destination="wO0-9u-WRm" eventType="valueChanged" id="Qwa-hI-aO1"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EDY-z2-ttB" firstAttribute="trailing" secondItem="7ZW-Xf-9vE" secondAttribute="trailingMargin" id="Apd-P6-X4a"/>
+                            <constraint firstItem="EDY-z2-ttB" firstAttribute="top" secondItem="TBW-Dx-PI2" secondAttribute="bottom" constant="8" id="Rpx-AI-yyN"/>
+                            <constraint firstItem="EDY-z2-ttB" firstAttribute="leading" secondItem="7ZW-Xf-9vE" secondAttribute="leadingMargin" id="VXc-iQ-Od0"/>
+                            <constraint firstItem="7jE-e2-ONT" firstAttribute="top" secondItem="EDY-z2-ttB" secondAttribute="bottom" constant="20" id="asL-yZ-lO3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tWz-Jm-vZd"/>
+                    <connections>
+                        <outlet property="graphScroll" destination="EDY-z2-ttB" id="OdW-5Z-WJZ"/>
+                        <outlet property="readSegmentation" destination="ldW-dH-jW7" id="ez7-Dp-X91"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4BW-Vr-7kq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
