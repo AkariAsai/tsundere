@@ -1,5 +1,15 @@
 import UIKit
 
+extension UIColor {
+    class func rgb(r: Int, g: Int, b: Int, alpha: CGFloat) -> UIColor{
+        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha)
+    }
+    class func MainColor() -> UIColor {
+        return UIColor.rgb(r: 0, g: 188, b: 188, alpha: 1.0)
+    }
+}
+
+
 class IndividualPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
     //UICollectionViews for read/unread books.
@@ -26,7 +36,11 @@ class IndividualPageViewController: UIViewController, UICollectionViewDataSource
         //ユーザー個人ネーム読み取るように変更
         profileNameLabel.text = "山田太郎"
         //プロフィール画も同様
-        profileImage.image = UIImage(named:"tmpprofile")
+        profileImage.image = UIImage(named:"iconset")
+        profileImage.layer.borderColor = UIColor.MainColor().cgColor
+        profileImage.layer.borderWidth = 5.0
+        profileImage.layer.cornerRadius = 20.0
+        profileImage.layer.masksToBounds = true
         
         unreadCollectionView.delegate = self
         unreadCollectionView.dataSource = self
