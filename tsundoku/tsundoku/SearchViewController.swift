@@ -9,11 +9,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBAction func didTapSearchButton(_ sender: Any) {
+                    self.view.endEditing(true)
         searchBookAPI(keyword: searchTextField.text!, callback : {books in for book in books {
             print(book)
+            
             self.suggestedBooks.append((book.0, book.1, book.2, book.3, book.4))
             }
-            print(self.suggestedBooks)
+            self.suggestTableView.isHidden = false
+            
+            for view in  self.view.subviews{
+                if view is UIImageView{
+                    view.removeFromSuperview()
+                }
+            }
             self.suggestTableView.reloadData()
         })
         
@@ -24,6 +32,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.delegate = self
+        self.suggestTableView.isHidden = true
+        let beforeSearchImgView = UIImageView.init(frame:CGRect(x: (self.view.bounds.width - 200)/2, y: self.view.bounds.maxY/2, width: 200, height: 200))
+        beforeSearchImgView.image = (image:#imageLiteral(resourceName: "beforeSearch"))
+        self.view.addSubview(beforeSearchImgView)
     }
     
     //GoogleBooksAPIから返される情報の数によって要更新
