@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,7 +58,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="push me"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="hPI-99-oSH"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="goIndividualView" id="hPI-99-oSH"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ldW-dH-jW7">
@@ -116,7 +116,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookCell" id="dW4-dZ-yHi">
-                                        <rect key="frame" x="0.0" y="13.5" width="114" height="180"/>
+                                        <rect key="frame" x="0.0" y="14" width="114" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="114" height="180"/>
@@ -309,10 +309,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SuggestionCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionCell" textLabel="6gk-D9-hTn" detailTextLabel="h1t-V4-GIq" style="IBUITableViewCellStyleSubtitle" id="uCF-E6-2cp">
-                                        <rect key="frame" x="0.0" y="28" width="324.99999999999989" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="325" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uCF-E6-2cp" id="hTi-Ob-Oom">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.99999999999989" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="325" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6gk-D9-hTn">
@@ -375,7 +375,4 @@
             <point key="canvasLocation" x="1879.2" y="95.802098950524751"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="y6n-NF-EO1"/>
-    </inferredMetricsTieBreakers>
 </document>
