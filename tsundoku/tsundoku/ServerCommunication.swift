@@ -94,7 +94,7 @@ func pushUserData(id : String, name : String, friends : [[ String : String ]], c
 }
 
 // (タイトル, 著者名, ISBN、商品画像、ページ数)
-typealias Book = (String, String, String, String, Int)
+typealias Book = (title: String, author: String, isbn: String, image: String, pageCount: Int)
 
 func searchBookAPI(keyword : String, callback : @escaping ([ Book ]) -> Void) {
     let data : [ String : AnyObject ] = [ "q" : keyword as AnyObject ]
