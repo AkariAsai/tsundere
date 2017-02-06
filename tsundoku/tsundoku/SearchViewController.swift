@@ -9,10 +9,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBAction func didTapSearchButton(_ sender: Any) {
-                    self.view.endEditing(true)
+        self.view.endEditing(true)
         self.suggestedBooks.removeAll()
         searchBookAPI(keyword: searchTextField.text!, callback : {books in for book in books {
-            print(book)
             self.suggestedBooks.append((book.0, book.1, book.2, book.3, book.4))
             }
             self.suggestTableView.isHidden = false
