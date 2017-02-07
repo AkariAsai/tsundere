@@ -22,3 +22,7 @@ Facebookアカウントと連携することで友達の積読本や読了本を
 - Google Books API
 
 #### Server
+
+- MongoDB
+- Nodejs(express)
+
