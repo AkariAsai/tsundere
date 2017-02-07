@@ -9,20 +9,20 @@ let HOST_ADDRESS = "app.ut-hackers.tk"
 typealias UsersInfoOverview = [ String : (String, Int, Int) ]
 
 func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
-    var overview = [
-        "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
-        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 3000),
-        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 4000),
-        "126" : (username: "Toby Chang", readNum: 4000, unreadNum: 4000),
-        "127" : (username: "HOGE FUGA", readNum: 5000, unreadNum: 5500),
-        "128" : (username: "PIYO PIYO", readNum: 5000, unreadNum: 5600),
-        "129" : (username: "AIUEO KKKKK", readNum: 5000, unreadNum: 57000),
-        "130" : (username: "JohnH", readNum: 6000, unreadNum: 5800),
-        "131" : (username: "E太郎", readNum: 7000, unreadNum: 7000),
-        "132" : (username: "辛太郎", readNum: 8000, unreadNum: 7100),
-        "133" : (username: "生太郎", readNum: 8000, unreadNum: 11000),
-        "134" : (username: "人太郎", readNum: 9000, unreadNum: 1100)
-    ]
+//    var overview = [
+//        "123" : (username: "Hiroaki KARASAWA", readNum: 1000, unreadNum: 2000),
+//        "124" : (username: "Kotatsu Shiraki", readNum: 2000, unreadNum: 3000),
+//        "125" : (username: "Akari Asai", readNum: 3000, unreadNum: 4000),
+//        "126" : (username: "Toby Chang", readNum: 4000, unreadNum: 4000),
+//        "127" : (username: "HOGE FUGA", readNum: 5000, unreadNum: 5500),
+//        "128" : (username: "PIYO PIYO", readNum: 5000, unreadNum: 5600),
+//        "129" : (username: "AIUEO KKKKK", readNum: 5000, unreadNum: 57000),
+//        "130" : (username: "JohnH", readNum: 6000, unreadNum: 5800),
+//        "131" : (username: "E太郎", readNum: 7000, unreadNum: 7000),
+//        "132" : (username: "辛太郎", readNum: 8000, unreadNum: 7100),
+//        "133" : (username: "生太郎", readNum: 8000, unreadNum: 11000),
+//        "134" : (username: "人太郎", readNum: 9000, unreadNum: 1100)
+//    ]
     
 //    callback(overview)
 //    
@@ -36,7 +36,7 @@ func fetchFirstView(callback : @escaping (UsersInfoOverview) -> Void) {
         guard let object = response.result.value else { return }
         let json = JSON(object)
         
-//        var overview : [ String: (String, Int, Int) ] = [ : ]
+        var overview : [ String: (String, Int, Int) ] = [ : ]
         let user_id = json["user"]["user_id"].string!
         let user_name = json["user"]["user_name"].string!
         let read_pages = json["user"]["page_number"]["read_pages"].intValue
