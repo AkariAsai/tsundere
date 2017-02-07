@@ -2,7 +2,7 @@
 
 ## Overview
 
-![Yahoo Hack Day 2017](http://hackday.jp) というハッカソンで開発した積読管理アプリ
+[Yahoo Hack Day 2017](http://hackday.jp) というハッカソンで開発した積読管理アプリ
 
 ## Detail
 
